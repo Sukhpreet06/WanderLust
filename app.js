@@ -18,7 +18,8 @@ const User = require("./models/user.js");
 const  listingRouter =require("./routes/listing.js");
 const  reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
-const dburl= process.env.ATLASDB_URL;
+const dburl= 'mongodb+srv://sukhpreetsinghjii:sukh123@cluster0.wnp48.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const SECRET = mysupersecretcode;
 
  async function main() {
     try {
@@ -44,7 +45,7 @@ app.set("views", path.join(__dirname, "views"));
  const  store = MongoStore.create({
     mongoUrl: dburl,
     crypto: {
-        secret:process.env.SECRET,
+        secret:SECRET,
     },
     touchAfter: 24 * 3600,
  });
@@ -54,7 +55,7 @@ app.set("views", path.join(__dirname, "views"));
 
  const sessionOptions = {
     store,
-    secret :process.env.SECRET,
+    secret :SECRET,
     resave :false,
     saveUninitialized :true,
     cookie : {
