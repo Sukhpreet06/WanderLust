@@ -98,7 +98,7 @@ app.get("/show",(req,res)=>{
 });
 
 
-app.all("*",(req, res, next)=>{
+app.all("/*",(req, res, next)=>{
     next(new ExpressError(404," Ahmmmm Page Not Found !"));
 });
 //Middelware___1
