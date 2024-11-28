@@ -33,13 +33,23 @@ module.exports.login=async (req,res)=>{
     let redirectUrl = res.locals.redirectUrl || "/listings";
     res.redirect(redirectUrl);
 };
-module.exports.logOut=(req,res,next)=>{
-    req.logout((err)=>{
-        if(err){
+module.exports.logOut = (req, res, next) => {
+    req.logout((err) => {
+        if (err) {
             return next(err);
         }
-        req.flash("success","You Are Logged Out !");
-        res.redirect("/login");
+        req.flash("success", "You Are Logged Out!");
+        
+        // Ensure any session-related data is cleared
+        req.session.destroy((err) => {
+            if (err) {
+                return next(err);
+            }
+            res.clearCookie('connect.sid'); // Adjust the cookie name if different
+            res.redirect("/login");
+        });
     });
+};
+
     
 };
