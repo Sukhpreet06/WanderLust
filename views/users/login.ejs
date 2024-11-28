@@ -33,3 +33,12 @@
 
      </div>
 </div>
+<script>
+    function clearLocalStorage() {
+        localStorage.removeItem('userToken'); // Replace 'userToken' with the actual key if needed
+        localStorage.removeItem('userId'); // Replace with your actual key if applicable
+    }
+
+    // Ensure this runs when the page loads
+    window.addEventListener('load', clearLocalStorage);
+</script>
